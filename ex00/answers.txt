@@ -1,0 +1,19 @@
+# output the installed package (need activated environment)
+conda env export --file environment.yml
+conda env export --file /dev/stdout
+
+# output metadata of numpy package and all dependencies
+conda search numpy --info
+
+
+# uninstall the numpy package
+conda remove numpy
+
+# checking that numpy is not here anymore
+conda list | grep numpy # in an active environment
+
+# install it back
+conda install numpy
+
+# requirements.txt file with pip freeze (dont use conda)
+conda list --export > requirements.txt
