@@ -40,6 +40,7 @@ morseDico = {
 }
 
 nbargs = len(argv)
+morselist = []
 
 if nbargs > 1:
     i = 1
@@ -47,14 +48,14 @@ if nbargs > 1:
         
         for char in argv[i]:
             try:
-                print(morseDico[char.upper()], end='')
-                print(' ', end='')
+                morselist.append(morseDico[char.upper()])
             except:
                 if char.isspace():
-                    print('/', end='')
+                    morselist.append('/')
                 else:
                     print('ERROR')
-        if i != nbargs - 1:
-            print(' ', end='')
-        i += 1 
-    print()
+                    exit()
+        i += 1
+    
+    for word in morselist:
+        print(word, end=' ')

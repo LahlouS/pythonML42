@@ -38,24 +38,42 @@ def add_recipe():
         else:
             break
     recipe['meal'] = input('enter meal description: ')
-    recipe['prep_time'] = int(input('enter preparation time: '))
+    try:
+        recipe['prep_time'] = int(input('Enter preparation time: '))
+    except:
+        recipe['prep_time'] = int(input('Enter an integer value '))
+
     cook_book[recipe_name] = recipe
+
+def delete_recipe(recipe_name):
+    if cook_book.get(recipe_name):
+        del cook_book[recipe_name]
+        print(recipe_name, 'has been deleted')
+    else:
+        print(recipe_name, 'not found')
 
 if __name__ == "__main__":
     print('Welcome to the cookBook program')
     while 1:
         print('''
-        1) show all register
+        1) show all recipes
         2) show recipe detail
         3) add a recipe
+        4) delete a recipe
+        5) Quit
         ''')
         feature = int(input('Enter a feature code: '))
         if feature == 1:
             all_recipes()
-        if feature == 2:
+        elif feature == 2:
             print_recipe(input('recipe name: '))
-        if feature == 3:
+        elif feature == 3:
             add_recipe()
+        elif feature == 4:
+            delete_recipe(input('recipe name: '))
+        elif feature == 5:
+            print('exiting...')
+            exit()
             
 
 
