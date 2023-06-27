@@ -45,7 +45,6 @@ morselist = []
 if nbargs > 1:
     i = 1
     while i < nbargs:
-        
         for char in argv[i]:
             try:
                 morselist.append(morseDico[char.upper()])
@@ -55,7 +54,11 @@ if nbargs > 1:
                 else:
                     print('ERROR')
                     exit()
+        morselist.append('/')
         i += 1
     
-    for word in morselist:
-        print(word, end=' ')
+    for idx, word in enumerate(morselist):
+        if idx != (len(morselist) - 1):
+            print(word, end=' ')
+        else:
+            print()
