@@ -29,7 +29,7 @@ conda create --name 42AI-$USER python=3.7 jupyter numpy pandas pycodestyle -y
 fi
 }
 function set_conda {
-MINICONDA_PATH="/home/sacha/Documents/pythonML42/conda"
+MINICONDA_PATH="/goinfre/$USER/miniconda3"
 CONDA=$MINICONDA_PATH"/bin/conda"
 PYTHON_PATH=$(which python)
 REQUIREMENTS="jupyter numpy pandas pycodestyle"
