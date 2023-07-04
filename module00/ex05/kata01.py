@@ -3,6 +3,5 @@ kata = {
 'Ruby': 'Yukihiro Matsumoto',
 'PHP': 'Rasmus Lerdorf',
 }
-
 for key, value in kata.items():
-    print(key, 'was created by ', value)
+    print(f'{key} was created by {value}')

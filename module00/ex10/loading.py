@@ -6,7 +6,7 @@ def ft_progress(listy):
     diff = 0
     while i < len(listy):
         progress_bar = '=' * int(i / len(listy) * 20) + '>'
-        formatted_output = 'ETA: %.2fs [%d%s][%s] %d/%d | elapsed time %.3f' %((time.time() - (start_time + diff)) * len(listy), i / len(listy) * 100, '%', progress_bar.ljust(21, ' '), i, len(listy), time.time() - start_time)
+        formatted_output = 'ETA: %.2fs [%d%s][%s] %d/%d | elapsed time %.3f' %((time.time() - (start_time + diff)) * len(listy), (i / len(listy) * 100) + 1, '%', progress_bar.ljust(21, ' '), i + 1, len(listy), time.time() - start_time)
         if (len(listy) - 1 != i):
             print(formatted_output, end='\r')
         else:
@@ -18,7 +18,7 @@ def ft_progress(listy):
 
 listy = range(1000)
 ret = 0
-for elem in ft_progress(listy):
+for elem in ft_progress(range(1000)):
     ret += (elem + 3) % 5
     time.sleep(0.01)
 print()

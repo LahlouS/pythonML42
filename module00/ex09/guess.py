@@ -2,8 +2,7 @@ import random
 
 secret_num = random.randint(1, 99)
 guess = None
-
-count = 0
+count = 1
 
 print('''
     This is an interactive guessing game!
@@ -13,10 +12,12 @@ print('''
     ''')
 
 while guess != 'exit':
-    guess = input('Choose a number from 1 to 100: ')
+    guess = input('Choose a number from 1 to 99: ')
     try:
         nb = int(guess)
-        if nb < secret_num:
+        if nb > 99 or nb < 1:
+            print('--> your number must be between 1 and 100')
+        elif nb < secret_num:
             print('--> too low')
         elif nb > secret_num:
             print('--> too high')
@@ -24,13 +25,14 @@ while guess != 'exit':
             guess = 'exit'
             if nb == 42:
                 print('The answer to the ultimate question of life, the universe and everything is 42.')
-            if count == 0:
+            if count == 1:
                 print('Congratulation, you found it first time !')
             else:
                 print('Congrats, you found it\nYou won in {} attemps'.format(count))
         count += 1
     except:
         if guess != 'exit':
+            count += 1
             print('--> input error')
 
 print('\nGoodbye')

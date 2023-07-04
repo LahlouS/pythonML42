@@ -1,12 +1,13 @@
 import sys
 
 translation_table = str.maketrans("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
-
-for index, arg in enumerate(sys.argv):
+for index, arg in enumerate(reversed(sys.argv)):
 	if arg != sys.argv[0]:
-		print(arg.translate(translation_table), end="")
-	if index != len(sys.argv) - 1:
-		print("", end=" ")
+		tr = arg.translate(translation_table)
+		if (index != len(sys.argv) - 2):
+			print(tr[::-1], end=" ")
+		else:
+			print(tr[::-1], end="")
 print("")
 
 

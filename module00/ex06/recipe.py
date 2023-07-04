@@ -30,9 +30,9 @@ def add_recipe():
         "prep_time": 0
         }
     recipe_name = input('enter recipe name: ')
-    ingredients_list = '/'
+    print('enter ingredients name: ', end=' ')
     while 1:
-        ingredients_list = input('enter ingredients name: ')
+        ingredients_list = input()
         if len(ingredients_list):
             recipe.get('ingredients').append(ingredients_list)
         else:
@@ -62,18 +62,24 @@ if __name__ == "__main__":
         4) delete a recipe
         5) Quit
         ''')
-        feature = int(input('Enter a feature code: '))
-        if feature == 1:
-            all_recipes()
-        elif feature == 2:
-            print_recipe(input('recipe name: '))
-        elif feature == 3:
-            add_recipe()
-        elif feature == 4:
-            delete_recipe(input('recipe name: '))
-        elif feature == 5:
-            print('exiting...')
-            exit()
-            
+        try:
+            feature = int(input('Enter a feature code: '))
+            if feature == 1:
+                all_recipes()
+            elif feature == 2:
+                print_recipe(input('recipe name: '))
+            elif feature == 3:
+                add_recipe()
+            elif feature == 4:
+                delete_recipe(input('recipe name: '))
+            elif feature == 5:
+                print('exiting...')
+                break
+            else:
+                print('Sorry, this option does not exist.')
+        except:
+                print('Sorry, this option does not exist.')
+
+
 
 
