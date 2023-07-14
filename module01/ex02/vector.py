@@ -1,12 +1,4 @@
 import sys
-import numpy as np
-
-    # CHECK IF ARG IS REALLY A VECTOR
-    # ERROR CHECKING TRY CATCH L.56
-    # TEST FOR BOTH SHAPE OF VECTOR
-    # FINISH OTHER OPERATION
-    # TEST
-    
 
     # (1, n) = [[0,1,2,3,4, . . .]]
     # (n, 1) = [[1], [2], [3], . . .]
@@ -133,11 +125,11 @@ class Vector:
                 return Vector([ [val1 / yOk for val1 in self.values[0]] ])
             else: 
                 raise ValueError('Vectors types are not compatible !')
-        except (TypeError, ValueError) as t:
+        except (TypeError, ValueError, ZeroDivisionError) as t:
             print('ERROR:', t)
 
     def __rtruediv__(self, y):
-        raise NotImplementedError
+        raise NotImplementedError('NotImplementedError: Division of a scalar by a Vector is not defined here.')
 
     def __mul__(self, y):
         try:
@@ -153,14 +145,17 @@ class Vector:
             print('ERROR:', t)
 
     def __rmul__(self, y):
+        print('in __rmul__')
         try:
-            self.__mul__(float(y))
+            return self.__mul__(float(y))
         except:
             raise NotImplementedError
 
     def __str__(self):
-        return f'Vector of type {str(self.shape)}\nvalues are:\n{str(self.values)}'
+        return f'Vector({str(self.values)})'
+    
     def __repr__(self):
-        return f'Vector of type {str(self.shape)}\nvalues are:\n{str(self.values)}'
+        return f'Vector({str(self.values)})'
+        
 
     
