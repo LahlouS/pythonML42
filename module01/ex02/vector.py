@@ -80,6 +80,7 @@ class Vector:
    
     # the dunders
     def __add__(self, y):
+        # print('DEBUG: __add__')
         try:
             vectorType = self.__typeChecking(y)
             if vectorType == 1:
@@ -88,10 +89,14 @@ class Vector:
                 return Vector([[val1 + val2 for val1, val2, in self.__iterateVector(y, vectorType)]])
             else: 
                 raise ValueError('Vectors types are not compatible !')
-        except (TypeError, ValueError) as t:
-            print('ERROR:', t)
-    
+        except ValueError as v:
+            print('ERROR:', v)
+        except TypeError as t:
+            print(t)
+            return NotImplemented
+
     def __radd__(self, y):
+        # print('DEBUG: __radd__')
         if not isinstance(y, Vector):
             raise NotImplementedError
         else:

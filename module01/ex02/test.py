@@ -49,6 +49,9 @@ print(v12.values)
 vbreak = v1 + v3
 print(vbreak)
 
+# try this to show that __radd__ is properly implemented
+# vbreak2 = 6 + v1
+
 print('\n\n--------------__sub__ v1, v2---------------')
 v12 = v1 - v2
 print(v12)
