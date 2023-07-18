@@ -14,7 +14,7 @@ class Account(object):
     
         if self.value < 0:
             raise AttributeError("Attribute value cannot be negative.")
-        if not isinstance(self.name, str)
+        if not isinstance(self.name, str):
             raise AttributeError("Attribute name must be a str object.")
         
     def transfer(self, amount):
@@ -39,19 +39,22 @@ class Bank(object):
         pass
     
     def __checkNbAttr(self, account):
-        if len(account.__dict) % 2 == False:
+        if len(account.__dict__) % 2 == False:
             return False
+        return True
 
     def __fixNbAttr(self, account):
-        attrList = dir(account)
-        for attr in attrList:
-            if attr != 'name' and attr != 'zip' and attr != 'value' and attr != 'id'
-                account.__dict__.pop(attr)
+        test = 0
+        for attr in account.__dict__:
+            if attr != 'name' and attr != 'zip' and attr != 'value' and attr != 'id' and attr != 'ID_COUNT':
+                test = attr
+        account.__dict__.pop(test)
+
 
     def __checkLocation(self, account):
         attrList = dir(account)
         for attr in attrList:
-            if attr[0:3] == 'zip' or attr[0:4] == 'addr'
+            if attr[0:3] == 'zip' or attr[0:4] == 'addr':
                 return True
         return False
     
@@ -64,7 +67,7 @@ class Bank(object):
             return True
         return False
     
-    def __fixName(self):
+    def __fixName(self, account):
         pass
     
     def __checkId(self, account):
@@ -122,13 +125,6 @@ class Bank(object):
                     (__checkNbAttr, __fixNbAttr)
                 ]
 
-    for func in i:
-        func[0]() ? func[1]() : pass
-
-        while func[j]()
-            j += 1
-        func = (a, b)
-
     def transfer(self, origin, dest, amount):
         """" Perform the fund transfer
         @origin: str(name) of the first account
@@ -136,6 +132,22 @@ class Bank(object):
         @amount: float(amount) amount to transfer
         @return True if success, False if an error occured
         """
+        client = [0, 0]
+        for account in self.accounts:
+            if account.name == origin:
+                if False in [func[0](self, account) for func in self.controllers]:
+                    return False
+                client[0] = account
+            if account.name == dest:
+                if False in [func[0](self, account) for func in self.controllers]:
+                    return False
+                client[1] = account
+
+        if amount > 0 and client[0].value >= amount:
+            client[0].transfer(amount * (-1))
+            client[1].transfer(amount)
+            return True
+        return False
 
 
         
@@ -144,6 +156,18 @@ class Bank(object):
         @name: str(name) of the account
         @return True if success, False if an error occured
         """
-        # ... Your code ...
+        wichAccount = 0
+        for account in self.accounts:
+            if account.name == name:
+                wichAccount = account
+                break
+        else:
+            print('DEBUG: passe par le return False')
+            return False
+        for checker in self.controllers:
+            if checker[0](self, wichAccount) == False:
+                checker[1](self, wichAccount)
+
+        return True
 
 
