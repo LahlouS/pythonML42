@@ -1,22 +1,23 @@
 class Account(object):
-    
+
     ID_COUNT = 1
-    
+
     def __init__(self, name, **kwargs):
         self.__dict__.update(kwargs)
-        
+
         self.id = self.ID_COUNT
         Account.ID_COUNT += 1
         self.name = name
 
         if not hasattr(self, 'value'):
             self.value = 0
-    
-        if self.value < 0:
-            raise AttributeError("Attribute value cannot be negative.")
-        if not isinstance(self.name, str):
-            raise AttributeError("Attribute name must be a str object.")
-        
+
+        if isinstance(self.value, int):
+            if self.value < 0:
+                raise AttributeError("Attribute value cannot be negative.")
+            if not isinstance(self.name, str):
+                raise AttributeError("Attribute name must be a str object.")
+
     def transfer(self, amount):
         self.value += amount
 
@@ -24,7 +25,7 @@ class Bank(object):
     """The bank"""
     def __init__(self):
         self.accounts = []
-    
+
     def add(self, new_account):
         """ Add new_account in the Bank
         @new_account: Account() new account to append
@@ -34,87 +35,103 @@ class Bank(object):
             self.accounts.append(new_account)
             return True
         return False
-    
+
+    @staticmethod
     def __donothing(self):
         pass
-    
-    def __checkNbAttr(self, account):
+    @staticmethod
+    def __checkNbAttr(account):
         if len(account.__dict__) % 2 == False:
             return False
         return True
 
-    def __fixNbAttr(self, account):
+    @staticmethod
+    def __fixNbAttr(account):
+
         test = 0
         for attr in account.__dict__:
             if attr != 'name' and attr != 'zip' and attr != 'value' and attr != 'id' and attr != 'ID_COUNT':
                 test = attr
-        account.__dict__.pop(test)
+        if test:
+            account.__dict__.pop(test)
+        else:
+            account.foo = 'bar'
 
-
-    def __checkLocation(self, account):
+    @staticmethod
+    def __checkLocation(account):
         attrList = dir(account)
         for attr in attrList:
             if attr[0:3] == 'zip' or attr[0:4] == 'addr':
                 return True
         return False
-    
-    def __fixLocation(self, account):
+
+    @staticmethod
+    def __fixLocation(account):
         account.__dict__.update(zip='911-745')
 
-    def __checkName(self, account):
+    @staticmethod
+    def __checkName(account):
         attrList = dir(account)
         if 'name' in attrList:
             return True
         return False
-    
-    def __fixName(self, account):
+
+    @staticmethod
+    def __fixName(account):
         pass
-    
-    def __checkId(self, account):
+
+    @staticmethod
+    def __checkId(account):
         attrList = dir(account)
         if 'id' in attrList:
             return True
         return False
-    
-    def __fixID(self, account):
+
+    @staticmethod
+    def __fixID(account):
         account.__dict__.update(id=account.ID_COUNT)
         Account.ID_COUNT += 1
 
-    def __checkValue(self, account):
+    @staticmethod
+    def __checkValue(account):
         attrList = dir(account)
         if 'value' in attrList:
             return True
         return False
 
-    def __fixValue(self, account):
+    @staticmethod
+    def __fixValue(account):
         account.__dict__.update(value=0.0)
 
-
-    def __checkIdType(self, account):
+    @staticmethod
+    def __checkIdType(account):
         if isinstance(account.id, int):
             return True
         return False
 
-    def __checkValueType(self, account):
+    @staticmethod
+    def __checkValueType(account):
         if isinstance(account.value, int) or isinstance(account.value, float):
             return True
         return False
 
-    def __checkB(self, account):
+    @staticmethod
+    def __checkB(account):
         attrList = dir(account)
         for attr in attrList:
             if attr[0] == 'b':
                 return False
         return True
-    
-    def __fixB(self, account):
+
+    @staticmethod
+    def __fixB(account):
         attrList = dir(account)
         for attr in attrList:
             if attr[0] == 'b':
                 account.__dict__.pop(attr)
-    
 
-    controllers = [ 
+
+    controllers = [
                     (__checkName, __fixName),
                     (__checkLocation, __fixLocation),
                     (__checkId, __fixID),
@@ -135,11 +152,11 @@ class Bank(object):
         client = [0, 0]
         for account in self.accounts:
             if account.name == origin:
-                if False in [func[0](self, account) for func in self.controllers]:
+                if False in [func[0](account) for func in self.controllers]:
                     return False
                 client[0] = account
             if account.name == dest:
-                if False in [func[0](self, account) for func in self.controllers]:
+                if False in [func[0](account) for func in self.controllers]:
                     return False
                 client[1] = account
 
@@ -149,8 +166,12 @@ class Bank(object):
             return True
         return False
 
+#########################################
+# IF IT IS 4 ATTR YOU CANT REMOVE ONE BECAUSE ALL ARE MANDATORY
+# SO EITHER YOU DIDNT UNDERSTOOD WHAT ATTR WE TALK ABOUT OR
+# YOU ADD SOMTHING LIKE IF(4 attr): __dict__.new('randomKey':5)
+#########################################
 
-        
     def fix_account(self, name):
         """ fix account associated to name if corrupted
         @name: str(name) of the account
@@ -162,12 +183,12 @@ class Bank(object):
                 wichAccount = account
                 break
         else:
-            print('DEBUG: passe par le return False')
             return False
+        testList = []
         for checker in self.controllers:
-            if checker[0](self, wichAccount) == False:
-                checker[1](self, wichAccount)
-
+            testList.append(checker[0](wichAccount))
+            if checker[0](wichAccount) == False:
+                checker[1](wichAccount)
         return True
 
 

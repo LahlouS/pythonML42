@@ -6,8 +6,9 @@ if __name__ == "__main__":
         'Smith Jane',
         zip='911-745',
         value=1000.0,
-        ref='1044618427ff2782f0bbece0abd05f31'
-    ))
+        ref='1044618427ff2782f0bbece0abd05f31',
+        foo='bar'
+        ))
     bank.add(Account(
         'William John',
         zip='100-064',
