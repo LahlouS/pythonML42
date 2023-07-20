@@ -166,12 +166,6 @@ class Bank(object):
             return True
         return False
 
-#########################################
-# IF IT IS 4 ATTR YOU CANT REMOVE ONE BECAUSE ALL ARE MANDATORY
-# SO EITHER YOU DIDNT UNDERSTOOD WHAT ATTR WE TALK ABOUT OR
-# YOU ADD SOMTHING LIKE IF(4 attr): __dict__.new('randomKey':5)
-#########################################
-
     def fix_account(self, name):
         """ fix account associated to name if corrupted
         @name: str(name) of the account

@@ -12,7 +12,7 @@ if __name__ == "__main__":
     bank.add(Account(
         'William John',
         zip='100-064',
-        value=6460.0,
+        value=7
         ref='58ba2b9954cd278eda8a84147ca73c87',
         info=None
     ))
