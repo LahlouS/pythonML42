@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/sacha/Documents/pythonML42/module02/tmp_env"
+set -gx VIRTUAL_ENV "/mnt/nfs/homes/slahlou/pythonML42/module02/tmp_env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

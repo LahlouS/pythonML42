@@ -2,10 +2,18 @@ Metadata-Version: 2.1
 Name: my-minipack
 Version: 0.0.1
 Summary: A small example package
-Author-email: slahlou <slahlou@student.42.fr>
+Author: slahlou
+Author-email: slahlou@student.42.fr
 Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Students
+Classifier: Topic :: Education
+Classifier: Topic :: HowTo
+Classifier: Topic :: Package
 Requires-Python: >=3.7
 Description-Content-Type: text/markdown
 License-File: LICENSE.txt

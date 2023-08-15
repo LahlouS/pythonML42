@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/sacha/Documents/pythonML42/module02/tmp_env"
+VIRTUAL_ENV="/mnt/nfs/homes/slahlou/pythonML42/module02/tmp_env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
