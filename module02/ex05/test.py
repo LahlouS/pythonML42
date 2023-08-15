@@ -5,7 +5,7 @@ from tinyStatistician import TinyStatistician
 tstat = TinyStatistician()
 # a = [1, 42, 300, 10, 59]
 a = ndarray(shape=(5,), dtype=int, buffer=array([1, 42, 300, 10, 59]))
-a = [1, 42, 300, 10, 59]
+# a = [1, 42, 300, 10, 59]
 print(tstat.mean(a))
 # Expected result: 82.4
 # 

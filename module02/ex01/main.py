@@ -49,3 +49,6 @@ if __name__ == "__main__":
 	doom_printer(obj)
 	obj = what_are_the_vars(42, "Yes", a=10, var_2="world")
 	doom_printer(obj)
+
+	# showing that the class did not change
+	print(ObjectC.__dir__)

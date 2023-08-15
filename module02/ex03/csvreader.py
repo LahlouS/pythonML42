@@ -48,6 +48,7 @@ class CsvReader:
         if isinstance(type, OSError):
             print('could not open the file')
         else:
+            print('closing the file . . .')
             self.file_handler.close()
     
     def getdata(self):

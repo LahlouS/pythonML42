@@ -1,8 +1,8 @@
 #!/bin/sh
 
-pip install --update pip
+pip install --upgrade pip
 pip install --upgrade setuptools
 python -m pip install --upgrade build 
-cd ./python_package && python -m build && cd ..
-
+python -m build
+pip install ./dist/my_minipack-0.0.1-py3-none-any.whl
 # 
