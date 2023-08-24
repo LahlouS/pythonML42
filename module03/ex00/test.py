@@ -1,10 +1,11 @@
 from numpyCreator import NumpyCreator
-
+import numpy as np
 
 npc = NumpyCreator()
 
 print('\n ---------- > from_list()')
-print(npc.from_list([[1,2,3],[6,3,4]]))
+nparray = npc.from_list([[1,2,3],[6,3,4]])
+print(nparray)
 # Output :
 # array([[1, 2, 3],
 # [6, 3, 4]])
@@ -22,16 +23,20 @@ print(npc.from_list([[1,2,3],['a','b','c'],[6,4,7]]))
 # ['a','b','c'],
 # ['6','4','7'], dtype='<U21'])
 
-print('\n ---------- > from_list) with an error')
+print('\n ---------- > from_list(() called with tuple')
 
 print(npc.from_list(((1,2),(3,4))))
 # Output :
 # None
+
+
 print('\n ---------- > from_tuple()')
 print(npc.from_tuple(("a", "b", "c")))
 # Output :
 # array(['a', 'b', 'c'])
-print('\n ---------- > from_tuple() with an error')
+
+
+print('\n ---------- > from_tuple() called with a list')
 print(npc.from_tuple(["a", "b", "c"]))
 # Output :
 # None
@@ -43,7 +48,7 @@ print(npc.from_iterable(range(5)))
 
 shape=(3,5)
 print(f'\n ---------- > from_shape({shape})')
-print(npc.from_shape(shape))
+print(npc.from_shape(shape, value=1))
 # Output :
 # array([[0, 0, 0, 0, 0],
 # [0, 0, 0, 0, 0],
