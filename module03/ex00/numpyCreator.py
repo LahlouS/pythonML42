@@ -68,8 +68,9 @@ class NumpyCreator(object):
 
     def random(self, shape):
         try:
-            return np.empty(shape, dtype=np.float_)
-        except:
+            return np.random.rand(shape[0] * shape[1]).reshape((-1, shape[1]))
+        except Exception as e:
+            print(e)
             return None
 
     def identity(self, n):

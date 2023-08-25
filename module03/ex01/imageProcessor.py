@@ -19,6 +19,7 @@ class ImageProcessor:
     def display(self, img):
         if isinstance(img, np.ndarray):
             plt.imshow(img)
+            plt.show()
             return True
         else:
             print('ERRRO: arg must be of type nd.array')
