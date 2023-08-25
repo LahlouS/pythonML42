@@ -2,3 +2,4 @@ conda*
 conda
 *.ipynb
 __pycache__
+*.png

@@ -11,8 +11,10 @@ class ImageProcessor:
             self.fileAsNumpyArr = io.imread(path)
             print(f'loading image of size {self.fileAsNumpyArr.shape[0]}x{self.fileAsNumpyArr.shape[1]}')
             return self.fileAsNumpyArr
-        except Exception as e:
-            print('DEBUG: ', e)
+        except OSError as err:
+            print("Error occurred:", err)
+            if hasattr(err, 'filename'):
+                print("Filename:", err.filename)
     
     def display(self, img):
         if isinstance(img, np.ndarray):
@@ -25,5 +27,5 @@ class ImageProcessor:
 if __name__ == '__main__':
     imgp = ImageProcessor()
     testimg = imgp.load('./42AI.png')
-    print(testimg)
+    # print(testimg)
     imgp.display(testimg)
