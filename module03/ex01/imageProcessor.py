@@ -10,6 +10,7 @@ class ImageProcessor:
         try:
             self.fileAsNumpyArr = io.imread(path)
             print(f'loading image of size {self.fileAsNumpyArr.shape[0]}x{self.fileAsNumpyArr.shape[1]}')
+            print(self.fileAsNumpyArr.shape)
             return self.fileAsNumpyArr
         except OSError as err:
             print("Error occurred:", err)

@@ -23,7 +23,13 @@ class ScrapBooker:
         ------
         This function should not raise any Exception.
         """
-    
+        start_y, start_x = position[0], position[1]
+
+        stop_y, stop_x = dim[0], dim[1]
+        if isinstance(array, np.ndarray):
+            return array[start_y:start_y + stop_y, start_x:start_x + stop_x]
+        return None
+
     def thin(self, array, n, axis):
         """
         Deletes every n-th line pixels along the specified axis (0: Horizontal, 1: Vertical)
@@ -41,6 +47,12 @@ class ScrapBooker:
         ------
         This function should not raise any Exception.
         """
+        if axis:
+            return array[np.array([x for x in range(array.shape[0]) if (x + 1) % n == 0]), ::]
+        else:
+            return array[::, np.array([x for x in range(array.shape[1]) if (x + 1) % n != 0])]
+        return None
+        
 
     def juxtapose(self, array, n, axis):
         """
@@ -58,6 +70,9 @@ class ScrapBooker:
         -------
         This function should not raise any Exception.
         """
+        if isinstance(array, np.ndarray):
+            # print([array for i in range(n)])
+            return np.concatenate([array for i in range(n)], axis=axis)
     
     def mosaic(self, array, dim):
         """
@@ -75,3 +90,6 @@ class ScrapBooker:
         -------
         This function should not raise any Exception.
         """
+        if isinstance(array, np.ndarray):
+            arr1 = np.concatenate([array for i in range(dim[0])], axis=0)
+            return np.concatenate([arr1 for i in range(dim[1])], axis=1)
