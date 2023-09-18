@@ -6,7 +6,7 @@ def youngestFellah(df, year):
 
         m_filtered_df = df[(df['Sex'] == 'M') & (df['Year'] == year)]
         f_filtered_df = df[(df['Sex'] == 'F') & (df['Year'] == year)]
-        
+        print(f_filtered_df.head())
         try:
             sorted_df = {
                         "m": m_filtered_df.sort_values(by='Age')["Age"].iloc[0],
